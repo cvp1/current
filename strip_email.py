@@ -8,7 +8,7 @@ def getmail():
     gm = 0
     hm = 0
     fm_list = []
-    with open("/Users/craigvandeputte/pyscripts/working/addresses.csv") as add:
+    with open("/Users/craigvandeputte/pyscripts/current/addresses.csv") as add:
         for x in add:
             FirstMail = x.strip().split("@")
             fm_list.append(FirstMail[0]) 
@@ -18,7 +18,7 @@ def getmail():
                 hm+=1 
         print("There are",gm,"gmail addresses")
         print("There are",hm,"hotmail addresses")
-        with open("/Users/craigvandeputte/pyscripts/working/results.csv","w") as results:
+        with open("/Users/craigvandeputte/pyscripts/current/results.csv","w") as results:
                 for x in fm_list:
                     y = x+"\n"
                     results.write(y)
@@ -28,9 +28,12 @@ getmail()
 s3_client = boto3.client('s3')
 response = s3_client.list_buckets()
 # Output the bucket names
+print(response)
 print('Existing buckets:')
 for bucket in response['Buckets']:
     print(f'  {bucket["Name"]}')
+
+
 
 
 
